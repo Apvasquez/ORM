@@ -19,7 +19,6 @@ class CreateProductsTable extends Migration
             $table->string('precio');
             $table->unsignedBigInteger('id_order');
             $table->foreign('id_order')->references('id')->on('orders');
-
             $table->timestamps();
         });
     }
