@@ -23,13 +23,7 @@
                             {{-- @error('id_cor') <span class="error">{{ $message }}</span> @enderror--}}
                             <div class="text-red-700">
                             </div>
-                            <label class="block mx-auto mb-2 ">
-                                <span for="precio" class="mb-2 font-bold form-label ">Precio</label>
-                            <input wire:model="precio" type="text" placeholder="Ingrese el precio "
-                                class="w-1/2 rounded form-input" required>
-
-                            <div class="text-red-700">
-                            </div>
+                            
 
                             </label>
                             <label class="block mx-auto mb-2 text-center">
@@ -40,7 +34,7 @@
                             <div class="text-red-700">
                             </div>
                             </label>
-                            
+
                             <label class="block mx-auto mb-2 text-center">
                                 <span for="tipo_envio" class="mb-2 font-bold form-label">Tipo de envio</label>
                             <input wire:model="tipo_envio" type="text" placeholder="Ingrese La fecha "
@@ -57,7 +51,7 @@
                                 class="w-1/2 rounded form-input" required>
 
 
-                                
+
                             @if ($accion == 'store')
                             <div class="mt-6 text-center">
                              <button wire:click="default" x-on:click="open = !open , for_edit =!for_edit ,add = !add"

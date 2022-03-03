@@ -44,13 +44,13 @@
                                 <div class="mt-4">
                                     <label class="block mx-auto mb-2 ">
                                         Orden</label>
-                                    <select id="order" name="order" class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+                                    <select id="order" wire:model="tipo_o" name="order" class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
                                     placeholder="Elija una Orden...">
                                     <option value="" disabled>Seleccione una orden...</option>
-                                    {{-- @foreach ($order as $t_servicio)
-                                        <option value={{ $t_servicio->id }} {{ $t_servicio->id === $tipo_s ? 'selected' : '' }} >
-                                            {{ $t_servicio->nombre }} </option>
-                                    @endforeach --}}
+                                    @foreach ($order as $t_servicio)
+                                        <option value={{ $t_servicio->id }} {{ $t_servicio->id === $tipo_o ? 'selected' : '' }} >
+                                            {{ $t_servicio->id }} </option>
+                                    @endforeach
 
                                 </select>
                                 </div>
@@ -93,9 +93,9 @@
                                     @foreach ($products as $product)
                                         <tr class="text-xs text-justify text-gray-500 ">
                                             <td class="px-2 ">{{ $product->id }}</td>
-                                            <td class="px-2  first-letter:uppercase">{{ $product->name }}</td>
+                                            <td class="px-2  first-letter:uppercase">{{ $product->nombre }}</td>
                                             <td class="px-2">{{ $product->precio }}</td>
-                                            <td class="px-2 ">{{ $product->orden_id }}</td>
+                                            <td class="px-2 ">{{ $product->order_id }}</td>
                                             <td class="px-2 py-1 w-62">
                                                 <button wire:click="edit({{ $product }})"
                                                     x-on:click="open = !open , for_edit = !for_edit, edit = !edit"

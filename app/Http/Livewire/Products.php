@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Order;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -9,13 +10,13 @@ use Livewire\WithPagination;
 class Products extends Component
 {
     use WithPagination;
-    public $order,$precio ,$nombre, $search;
+    public $precio ,$nombre, $search ,$tipo_o = '1',$prod_id;
 
     public function render()
     {
         $products = Product::where('nombre', 'like', '%' . $this->search . '%')->paginate(10);
-
-        return view('livewire.products',compact('products'));
+        $order = Order::all();
+        return view('livewire.products',compact('products','order'));
     }
     public $accion = "store";
     public function store()
@@ -25,36 +26,47 @@ class Products extends Component
         $prod = Product::create([
             'nombre' => $this->nombre,
             'precio' => $this->precio,
-            'order_id' =>$this->order ,
+            'order_id' =>$this->tipo_o ,
         ]);
+        $order = Order::find($this->tipo_o);
+            $order->update([
+                'precio' =>  $order->products->sum('precio'),
 
-        $this->reset(['nombre', 'precio', 'order_id']);
+            ]);
+
+        $this->reset(['nombre', 'precio', 'tipo_o']);
     }
     public function edit(Product $prod)
     {
         $this->accion = "update";
         $this->nombre = $prod->nombre;
         $this->precio = $prod->precio;
-        $this->order = $prod->order_id;
+        $this->tipo_o = $prod->order_id;
+        $this->prod_id = $prod->id;
 
 
     }
     public function update()
     {
-        $this->validate();
+        // $this->validate();
         $prod = Product::find($this->prod_id);
         $prod->update([
-            'nombre' => $this->name,
-            'precio' => $this->email,
-            'order_id' => $this->password,
+            'nombre' => $this->nombre,
+            'precio' => $this->precio,
+            'order_id' => $this->tipo_o,
 
         ]);
-        $this->reset(['nombre', 'precio', 'order_id']);
+        $order = Order::find($this->tipo_o);
+        $order->update([
+            'precio' =>  $order->products->sum('precio'),
+
+        ]);
+        $this->reset(['nombre', 'precio', 'tipo_o']);
 
     }
     function
 default() {
-        $this->reset(['nombre', 'precio', 'order_id']);
+        $this->reset(['nombre', 'precio', 'tipo_o']);
 
     }
     public function destroy(Product $prod)

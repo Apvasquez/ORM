@@ -9,7 +9,7 @@ use App\Models\Order_Detail;
 class Orden2 extends Component
 {
     public $search = '';
-    public $precio = '';
+    public $precio = 0;
     public $fecha = '';
     public $order_id= '';
     public $id_ord ='';
@@ -31,18 +31,18 @@ class Orden2 extends Component
         // $this->accion = "store";
         $order =
         Order::create( [
-            
+
             'precio' => $this->precio,
             'fecha' => $this->fecha,
             'user_id'=> auth()->user()->id ,
         ]);
         $this->id_ord = $order -> id;
-       
+
         Order_Detail::create([
             'tipo_envio' => $this->tipo_envio,
             'direccion_envio' => $this->direccion_envio,
             'order_id' => $this->id_ord,
-            
+
         ]);
         $this->reset(['precio', 'fecha', 'tipo_envio', 'direccion_envio', 'order_id']);
     }
@@ -64,7 +64,7 @@ class Orden2 extends Component
         $corr->update([
             'precio' => $this->precio,
             'fecha' => $this->fecha,
-            
+
         ]);
         $this->reset(['precio', 'fecha']);
 
