@@ -14,4 +14,12 @@ class Order extends Model
         'precio',
         'fecha',
         ];
+        public function orders()
+        {
+            return $this->hasOne('App\Models\Order_Detail');
+        }
+        public function products()
+        {
+            return $this->hasMany('App\Models\Products');
+        }
 }

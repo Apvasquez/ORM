@@ -41,6 +41,10 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
 
     /**
      * The attributes that should be cast.
