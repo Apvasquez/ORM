@@ -15,7 +15,12 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order__details', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo_envio');
+            $table->unsignedBigInteger('order_id');
+            $table->string('direccion_envio');
             $table->timestamps();
+            $table->foreign('order_id')->references('id')->on('orders');
+
         });
     }
 
