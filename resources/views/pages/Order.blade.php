@@ -1,5 +1,5 @@
 <x-app-layout>
 
-@livewire('order');
+@livewire('orden2');
 
 </x-app-layout>

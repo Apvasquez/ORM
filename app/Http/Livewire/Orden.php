@@ -8,12 +8,13 @@ use App\Models\Order;
 use App\Models\Order_Detail;
 
 
-class Orde_Livewire extends Component
+class Orden extends Component
 {
     public $search = '';
     public $precio = '';
     public $fecha = '';
-    public $id_ord;
+    public $order_id= '';
+    public $id_ord ='';
     public $accion = 'store';
 
 
@@ -21,24 +22,29 @@ class Orde_Livewire extends Component
     public $direccion_envio = '';
        public function render()
     {
-        $order = Order::where('precio','like','%'. $this->search . '%')->get();
-        return view('livewire.order',compact('order'));
+        $order = Order::all();
+        
+        return view('livewire.orden',compact('order'));
     }
-    public function store()
-    {
-        // $this->accion = "store";
 
-        Order::create([
+
+    public function store(Array $input)
+    {
+
+        // $this->accion = "store";
+        $order =
+        Order::create( $input , [
+            
             'precio' => $this->precio,
             'fecha' => $this->fecha,
-            
-            
-
         ]);
-
+        $this->id_ord = $order -> id;
+        $order;
         Order_Detail::create([
             'tipo_envio' => $this->tipo_envio,
             'direccion_envio' => $this->direccion_envio,
+            'order_id' => $this->order_id,
+            
         ]);
         $this->reset(['precio', 'fecha', 'tipo_envio', 'direccion_envio']);
     }

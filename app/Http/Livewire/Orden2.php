@@ -6,41 +6,45 @@ use Livewire\Component;
 use App\Models\Order;
 
 use App\Models\Order_Detail;
-
-
-class Orde_Livewire extends Component
+class Orden2 extends Component
 {
     public $search = '';
     public $precio = '';
     public $fecha = '';
-    public $id_ord;
+    public $order_id= '';
+    public $id_ord ='';
+    public $user_id='';
     public $accion = 'store';
 
 
   public $tipo_envio = '';
     public $direccion_envio = '';
-       public function render()
+
+    public function render()
     {
-        $order = Order::where('precio','like','%'. $this->search . '%')->get();
-        return view('livewire.order',compact('order'));
+        $order = Order::all();
+        return view('livewire.orden2',compact('order'));
     }
     public function store()
     {
-        // $this->accion = "store";
 
-        Order::create([
+        // $this->accion = "store";
+        $order =
+        Order::create( [
+            
             'precio' => $this->precio,
             'fecha' => $this->fecha,
-            
-            
-
+            'user_id'=> auth()->user()->id ,
         ]);
-
+        $this->id_ord = $order -> id;
+       
         Order_Detail::create([
             'tipo_envio' => $this->tipo_envio,
             'direccion_envio' => $this->direccion_envio,
+            'order_id' => $this->id_ord,
+            
         ]);
-        $this->reset(['precio', 'fecha', 'tipo_envio', 'direccion_envio']);
+        $this->reset(['precio', 'fecha', 'tipo_envio', 'direccion_envio', 'order_id']);
     }
 
     //Edit Corresponsales

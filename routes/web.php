@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderDetailController;
-use App\Http\Controllers\ProductController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +16,6 @@ use App\Http\Controllers\ProductController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/order',[OrderController::class ,'index'])->name('order') ;
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

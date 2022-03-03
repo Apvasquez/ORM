@@ -34,13 +34,30 @@
                             </label>
                             <label class="block mx-auto mb-2 text-center">
                                 <span for="fecha" class="mb-2 font-bold form-label">Fecha</label>
-                            <input wire:model="fecha" type="text" placeholder="Ingrese La fecha "
+                            <input wire:model="fecha" type="date" placeholder="Ingrese La fecha "
                                 class="w-1/2 rounded form-input" required>
 
                             <div class="text-red-700">
                             </div>
                             </label>
-                           
+                            
+                            <label class="block mx-auto mb-2 text-center">
+                                <span for="tipo_envio" class="mb-2 font-bold form-label">Tipo de envio</label>
+                            <input wire:model="tipo_envio" type="text" placeholder="Ingrese La fecha "
+                                class="w-1/2 rounded form-input" required>
+
+                            <div class="text-red-700">
+                            </div>
+                            </label>
+
+
+                            <label class="block mx-auto mb-2 text-center">
+                                <span for="direccion_envio" class="mb-2 font-bold form-label">lugar de envio</label>
+                            <input wire:model="direccion_envio" type="text" placeholder="Ingrese el lugar"
+                                class="w-1/2 rounded form-input" required>
+
+
+                                
                             @if ($accion == 'store')
                             <div class="mt-6 text-center">
                              <button wire:click="default" x-on:click="open = !open , for_edit =!for_edit ,add = !add"
@@ -68,7 +85,10 @@
                                         <th class="px-4 py-3 w-">ID</th>
                                         <th class="px-4 py-3">Precio</th>
                                         <th class="px-4 py-3">Fecha</th>
-                                        
+                                        <th class="px-4 py-3">Lugar</th>
+
+                                        <th class="px-4 py-3">Tipo</th>
+                                         <th class="px-4 py-3">ACCIÓN</th>
                                     </tr>
                                 </thead>
                                 <tbody class="w-full mx-auto divide-y divide-gray-300">
@@ -77,7 +97,10 @@
                                             <td class="px-4 ">{{ $corres->id }}</td>
                                             <td class="px-4 ">{{ $corres->precio }}</td>
                                             <td class="px-4 ">{{ $corres->fecha }}</td>
-                                            
+                                            <td class="px-4 ">{{ $corres->orders->first()->direccion_envio }}</td>
+
+                                            <td class="px-4 ">{{ $corres->orders->first()->tipo_envio }}</td>
+
                                             <td class="px-4 py-1">
                                                 <button wire:click="edit({{ $corres }})"
                                                     x-on:click="open = !open , for_edit = !for_edit"
