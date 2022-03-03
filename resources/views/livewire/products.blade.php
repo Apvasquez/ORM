@@ -26,20 +26,20 @@
 
                     </div>
                     <div x-show="open">
-                        <div class="font-mono uppercase font-bold text-sm mx-auto text-center text-slate-900 border m-2 p-2 rounded shadow-md ">
+                        <div class="font-mono max-w-5xl uppercase font-bold text-sm mx-auto text-center text-slate-900 border m-2 p-2 rounded shadow-md ">
                             <validation-errors class="mb-4" />
                                 @csrf
                                 <div>
                                     <label class="block mx-auto mb-2 ">
                                         Nombre</label>
                                     <input wire:model="nombre" id="name" class="w-1/2 rounded form-input" type="text"
-                                    required placeholder="Ingrese un nombre ......" autofocus autocomplete="name" />
+                                    required placeholder="Ingrese el nombre ......" autofocus autocomplete="name" />
                                 </div>
-                                <div class="mt-4">
+                                <div>
                                     <label class="block mx-auto mb-2 ">
                                         Precio</label>
-                                    <input id="precio" wire:model="precio" class="w-1/2 rounded form-input" type="precio"
-                                        name="precio" required placeholder="Ingrese un correo ......" />
+                                    <input wire:model="precio" id="name" class="w-1/2 rounded form-input" type="number"
+                                    required placeholder="Ingrese el precio ......" autofocus autocomplete="name" />
                                 </div>
                                 <div class="mt-4">
                                     <label class="block mx-auto mb-2 ">
@@ -95,7 +95,7 @@
                                             <td class="px-2 ">{{ $product->id }}</td>
                                             <td class="px-2  first-letter:uppercase">{{ $product->name }}</td>
                                             <td class="px-2">{{ $product->precio }}</td>
-                                            <td class="px-2 ">{{ $product->state }}</td>
+                                            <td class="px-2 ">{{ $product->orden_id }}</td>
                                             <td class="px-2 py-1 w-62">
                                                 <button wire:click="edit({{ $product }})"
                                                     x-on:click="open = !open , for_edit = !for_edit, edit = !edit"

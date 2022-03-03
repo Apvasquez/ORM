@@ -9,58 +9,58 @@ use Livewire\WithPagination;
 class Products extends Component
 {
     use WithPagination;
-    public $order,$precio;
+    public $order,$precio ,$nombre, $search;
 
     public function render()
     {
-        $users = Product::where('nombre', 'like', '%' . $this->search . '%')->paginate(10);
+        $products = Product::where('nombre', 'like', '%' . $this->search . '%')->paginate(10);
 
-        return view('livewire.products');
+        return view('livewire.products',compact('products'));
     }
     public $accion = "store";
     public function store()
     {
         $this->accion = "store";
         // $this->validate();
-        $user = Product::create([
+        $prod = Product::create([
             'nombre' => $this->nombre,
             'precio' => $this->precio,
             'order_id' =>$this->order ,
-        ])->assignRole('Cliente');
-        $token = $user->createToken('myapptoken')->plainTextToken;
-        $this->reset(['name', 'email', 'password', 'accion']);
+        ]);
+
+        $this->reset(['nombre', 'precio', 'order_id']);
     }
-    public function edit(User $user)
+    public function edit(Product $prod)
     {
         $this->accion = "update";
-        $this->name = $user->name;
-        $this->email = $user->email;
-        $this->password = '';
-        $this->user_id = $user->id;
+        $this->nombre = $prod->nombre;
+        $this->precio = $prod->precio;
+        $this->order = $prod->order_id;
+
 
     }
     public function update()
     {
         $this->validate();
-        $user = user::find($this->user_id);
-        $user->update([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => $this->password,
+        $prod = Product::find($this->prod_id);
+        $prod->update([
+            'nombre' => $this->name,
+            'precio' => $this->email,
+            'order_id' => $this->password,
 
         ]);
-        $this->reset(['name', 'email', 'password', 'accion']);
+        $this->reset(['nombre', 'precio', 'order_id']);
 
     }
     function
 default() {
-        $this->reset(['name', 'email', 'password', 'accion']);
+        $this->reset(['nombre', 'precio', 'order_id']);
 
     }
-    public function destroy(User $user)
+    public function destroy(Product $prod)
     {
-        $user->delete();
+        $prod->delete();
     }
 }
 
-}
+

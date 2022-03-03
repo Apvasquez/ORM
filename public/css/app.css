@@ -1153,6 +1153,11 @@ select {
 .w-1\/2 {
   width: 50%;
 }
+.w-max {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1167,6 +1172,9 @@ select {
 }
 .max-w-6xl {
   max-width: 72rem;
+}
+.max-w-5xl {
+  max-width: 64rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1215,6 +1223,12 @@ select {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .list-inside {
   list-style-position: inside;
