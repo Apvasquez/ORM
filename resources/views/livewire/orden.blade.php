@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <div id="button-trigger" class="">
         <div class="card-content" x-data="{open : false , for_edit : false}">
             <div x-show="!open" class="font-mono font-normal uppercase tracking-wide w-full  rounded p-2 bg-white">
@@ -44,9 +44,9 @@
                             <div class="text-red-700">
                             </div>
                             </label>
-                            <div x-show="!open" class="font-mono font-normal uppercase tracking-wide w-full  rounded p-2 bg-white">
-             Linea Ordenes
-            </div>
+                                <div x-show="!open" class="font-mono font-normal uppercase tracking-wide w-full  rounded p-2 bg-white">
+                Linea Ordenes
+                </div>
 
             <label class="block mx-auto mb-2 ">
                                 <span for="tipo_envio" class="mb-2 font-bold form-label ">Tipo de envio</label>
@@ -127,4 +127,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
