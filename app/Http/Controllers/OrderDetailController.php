@@ -15,7 +15,9 @@ class OrderDetailController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('pages.Order_detail');
+
     }
 
     /**

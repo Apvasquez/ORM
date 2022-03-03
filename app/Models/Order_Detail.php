@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Order_Detail extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'tipo_envio',
+        'direccion_envio',
+        'order_id',
+           ];
+
 }

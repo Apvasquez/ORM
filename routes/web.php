@@ -16,8 +16,13 @@ use App\Http\Controllers\OrderController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/order',[OrderController::class ,'index'])->name('order') ;
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/orders', [OrderController::class, 'index'])->middleware('auth:sanctum')->named('orders');
+Route::get('/orders_detail', [OrderDetailController::class, 'index'])->middleware('auth:sanctum')->named('orders_detail');
+Route::get('/products', [ProductController::class, 'index'])->middleware('auth:sanctum')->named('products');
+
+
