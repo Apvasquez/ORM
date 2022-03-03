@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->float('precio')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->date('fecha');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

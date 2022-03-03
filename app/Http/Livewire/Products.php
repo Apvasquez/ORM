@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 class Products extends Component
 {
     use WithPagination;
-    public $precio ,$nombre, $search ,$tipo_o = '1',$prod_id;
+    public $precio ,$nombre, $search ,$tipo_o = '1',$prod_id,$bandera;
 
     public function render()
     {
@@ -43,8 +43,7 @@ class Products extends Component
         $this->precio = $prod->precio;
         $this->tipo_o = $prod->order_id;
         $this->prod_id = $prod->id;
-
-
+        $this->bandera = $prod->order_id;
     }
     public function update()
     {
@@ -59,6 +58,11 @@ class Products extends Component
         $order = Order::find($this->tipo_o);
         $order->update([
             'precio' =>  $order->products->sum('precio'),
+
+        ]);
+        $order_act = Order::find($this->bandera);
+        $order_act->update([
+            'precio' =>  $order_act->products->sum('precio'),
 
         ]);
         $this->reset(['nombre', 'precio', 'tipo_o']);
