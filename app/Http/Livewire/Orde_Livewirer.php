@@ -5,6 +5,9 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Order;
 
+use App\Models\Order_Detail;
+
+
 class Orde_Livewire extends Component
 {
     public $search = '';
@@ -13,7 +16,9 @@ class Orde_Livewire extends Component
     public $id_ord;
     public $accion = 'store';
 
-  
+
+  public $tipo_envio = '';
+    public $direccion_envio = '';
        public function render()
     {
         $order = Order::where('precio','like','%'. $this->search . '%')->get();
@@ -27,9 +32,15 @@ class Orde_Livewire extends Component
             'precio' => $this->precio,
             'fecha' => $this->fecha,
             
+            
+
         ]);
 
-        $this->reset(['precio', 'fecha']);
+        Order_Detail::create([
+            'tipo_envio' => $this->tipo_envio,
+            'direccion_envio' => $this->direccion_envio,
+        ]);
+        $this->reset(['precio', 'fecha', 'tipo_envio', 'direccion_envio']);
     }
 
     //Edit Corresponsales
@@ -39,7 +50,6 @@ class Orde_Livewire extends Component
         $this->precio = $corr->precio;
         $this->fecha= $corr->fecha;
         $this->id_ord = $corr->id;
-
     }
 
 
