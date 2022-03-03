@@ -23,8 +23,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/orders', [OrderController::class, 'index'])->middleware('auth:sanctum')->named('orders');
-Route::get('/orders_detail', [OrderDetailController::class, 'index'])->middleware('auth:sanctum')->named('orders_detail');
-Route::get('/products', [ProductController::class, 'index'])->middleware('auth:sanctum')->named('products');
+Route::get('/orders', [OrderController::class, 'index'])->middleware('auth:sanctum')->name('orders');
+Route::get('/orders_detail', [OrderDetailController::class, 'index'])->middleware('auth:sanctum')->name('orders_detail');
+Route::get('/products', [ProductController::class, 'index'])->middleware('auth:sanctum')->name('products');
 
 
